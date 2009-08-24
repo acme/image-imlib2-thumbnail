@@ -1,5 +1,9 @@
 Revision history for Perl module Image::Imlib2::Thumbnail:
 
+0.35
+  - have different quality ratio per size (defaults to 75), patch
+    by Jos Boumans
+
 0.34 Wed Apr 16 14:41:07 BST 2008
   - be sure to report the right size when not cropping
 

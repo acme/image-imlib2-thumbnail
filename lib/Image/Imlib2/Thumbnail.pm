@@ -94,6 +94,9 @@ sub generate {
             $size->{type} );
         next unless $type eq $original_type;
 
+        # add quality from the size definition if provided
+        my $quality = $size->{'quality'} || 75;
+
         my $scaled_image;
 
         if ( $width && $height ) {
@@ -123,7 +126,7 @@ sub generate {
         }
 
         my $destination = file( $directory, "$name.jpg" )->stringify;
-        $scaled_image->set_quality(75);
+        $scaled_image->set_quality($quality);
         $scaled_image->save($destination);
         push @thumbnails,
             {
@@ -221,15 +224,19 @@ Will also include the original image:
 Add an extra size:
 
   $thumbnail->add_size(
-      {   type   => 'landscape',
-          name   => 'header',
-          width  => 350,
-          height => 200,
+      {   type    => 'landscape',
+          name    => 'header',
+          width   => 350,
+          height  => 200,
+          quality => 80,
       }
   );
   
 If width or height are 0, then this retains the aspect ratio and 
 performs no cropping.
+
+The quality is the JPEG quality compression ratio. This defaults
+to 75.
 
 =head1 AUTHOR
 

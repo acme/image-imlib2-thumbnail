@@ -1,0 +1,16 @@
+--- #YAML:1.0
+name:                Image-Imlib2-Thumbnail
+version:             0.34
+abstract:            ~
+license:             perl
+author:              
+    - Leon Brocard <acme@astray.com>
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
+    Class::Accessor::Fast:         0
+    Image::Imlib2:                 2.00
+    Path::Class:                   0
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

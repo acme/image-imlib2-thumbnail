@@ -6,6 +6,7 @@ WriteMakefile(
     NAME         => 'Image::Imlib2::Thumbnail',
     VERSION_FROM => 'lib/Image/Imlib2/Thumbnail.pm',
     AUTHOR       => 'Leon Brocard <acme@astray.com>',
+    ABSTRACT     => 'Generate a set of thumbnails of an image',
     LICENSE      => 'perl',
     PREREQ_PM    => {
         'Class::Accessor::Fast' => '0',

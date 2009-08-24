@@ -46,7 +46,7 @@ DESCRIPTION
     "Digital camera" article:
 
       http://en.wikipedia.org/wiki/Digital_camera#Image_resolution
-  
+
 METHODS
   new
     The constructor:
@@ -71,18 +71,24 @@ METHODS
     Add an extra size:
 
       $thumbnail->add_size(
-          {   type   => 'landscape',
-              name   => 'header',
-              width  => 350,
-              height => 200
+          {   type    => 'landscape',
+              name    => 'header',
+              width   => 350,
+              height  => 200,
+              quality => 80,
           }
       );
+
+    If width or height are 0, then this retains the aspect ratio and
+    performs no cropping.
+
+    The quality is the JPEG quality compression ratio. This defaults to 75.
 
 AUTHOR
     Leon Brocard, acme@astray.com
 
 COPYRIGHT
-    Copyright (c) 2007 Leon Brocard. All rights reserved. This program is
+    Copyright (c) 2007-8 Leon Brocard. All rights reserved. This program is
     free software; you can redistribute it and/or modify it under the same
     terms as Perl itself.
 

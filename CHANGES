@@ -5,6 +5,7 @@ Revision history for Perl module Image::Imlib2::Thumbnail:
     by Jos Boumans
   - preserve the image extension (so resized PNGs are PNGs) and 
     report the MIME type, patch by Jos Boumans
+  - add human-readable license
 
 0.34 Wed Apr 16 14:41:07 BST 2008
   - be sure to report the right size when not cropping

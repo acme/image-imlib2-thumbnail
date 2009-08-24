@@ -8,9 +8,10 @@ WriteMakefile(
     AUTHOR       => 'Leon Brocard <acme@astray.com>',
     LICENSE      => 'perl',
     PREREQ_PM    => {
-        'Class::Accessor::Fast'      => '0',
-        'Image::Imlib2'              => '2.00',
-        'Path::Class'                => '0', 
+        'Class::Accessor::Fast' => '0',
+        'Image::Imlib2'         => '2.00',
+        'MIME::Types'           => '0',
+        'Path::Class'           => '0',
     }
 );
 

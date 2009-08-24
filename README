@@ -9,11 +9,12 @@ SYNOPSIS
       my @thumbnails = $thumbnail->generate( $source, $directory );
       foreach my $thumbnail (@thumbnails) {
         my $name = $thumbnail->{name};
-        my $width= $thumbnail->{width};
+        my $width = $thumbnail->{width};
         my $height = $thumbnail->{height};
         my $type = $thumbnail->{type};
         my $filename = $thumbnail->{filename};
-        print "$name/$type is $width x $height at $filename\n";
+        my $mime_type = $thumbnail->{mime_type};
+        print "$name/$type/$mime_type is $width x $height at $filename\n";
       }
 
 DESCRIPTION
@@ -60,11 +61,12 @@ METHODS
       my @thumbnails = $thumbnail->generate( $source, $directory );
       foreach my $thumbnail (@thumbnails) {
         my $name = $thumbnail->{name};
-        my $width= $thumbnail->{width};
+        my $width = $thumbnail->{width};
         my $height = $thumbnail->{height};
         my $type = $thumbnail->{type};
         my $filename = $thumbnail->{filename};
-        print "$name/$type is $width x $height at $filename\n";
+        my $mime_type = $thumbnail->{mime_type};
+        print "$name/$type/$mime_type is $width x $height at $filename\n";
       }
 
   add_size

@@ -1,7 +1,9 @@
 package Image::Imlib2::Thumbnail;
 use strict;
 use warnings;
+use File::Basename qw(fileparse);
 use Image::Imlib2;
+use MIME::Types;
 use Path::Class;
 use base qw(Class::Accessor::Fast);
 __PACKAGE__->mk_accessors(qw(sizes));
@@ -79,6 +81,11 @@ sub generate {
         = ( $image->width, $image->height );
     my $original_type
         = $original_width > $original_height ? 'landscape' : 'portrait';
+    my $original_extension = [ fileparse( $filename, qr/\.[^.]*?$/ ) ]->[2]
+        || '.jpg';
+    $original_extension =~ s/^\.//;
+
+    my $mime_type = MIME::Types->new->mimeTypeOf($original_extension);
 
     my @thumbnails = (
         {   filename => $filename,
@@ -88,6 +95,7 @@ sub generate {
             type     => $original_type,
         }
     );
+
     foreach my $size ( @{ $self->sizes } ) {
         my ( $name, $width, $height, $type )
             = ( $size->{name}, $size->{width}, $size->{height},
@@ -125,16 +133,19 @@ sub generate {
             $width = $scaled_image->width;
         }
 
-        my $destination = file( $directory, "$name.jpg" )->stringify;
+        my $destination
+            = file( $directory, $name . '.' . $original_extension )
+            ->stringify;
         $scaled_image->set_quality($quality);
         $scaled_image->save($destination);
         push @thumbnails,
             {
-            filename => $destination,
-            name     => $name,
-            width    => $width,
-            height   => $height,
-            type     => $type,
+            filename  => $destination,
+            name      => $name,
+            width     => $width,
+            height    => $height,
+            type      => $type,
+            mime_type => $mime_type,
             };
     }
     return @thumbnails;
@@ -157,11 +168,12 @@ Image::Imlib2::Thumbnail - Generate a set of thumbnails of an image
   my @thumbnails = $thumbnail->generate( $source, $directory );
   foreach my $thumbnail (@thumbnails) {
     my $name = $thumbnail->{name};
-    my $width= $thumbnail->{width};
+    my $width = $thumbnail->{width};
     my $height = $thumbnail->{height};
     my $type = $thumbnail->{type};
     my $filename = $thumbnail->{filename};
-    print "$name/$type is $width x $height at $filename\n";
+    my $mime_type = $thumbnail->{mime_type};
+    print "$name/$type/$mime_type is $width x $height at $filename\n";
   }
 
 =head1 DESCRIPTION
@@ -212,11 +224,12 @@ Will also include the original image:
   my @thumbnails = $thumbnail->generate( $source, $directory );
   foreach my $thumbnail (@thumbnails) {
     my $name = $thumbnail->{name};
-    my $width= $thumbnail->{width};
+    my $width = $thumbnail->{width};
     my $height = $thumbnail->{height};
     my $type = $thumbnail->{type};
     my $filename = $thumbnail->{filename};
-    print "$name/$type is $width x $height at $filename\n";
+    my $mime_type = $thumbnail->{mime_type};
+    print "$name/$type/$mime_type is $width x $height at $filename\n";
   }
 
 =head2 add_size

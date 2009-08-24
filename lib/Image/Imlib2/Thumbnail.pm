@@ -7,7 +7,7 @@ use MIME::Types;
 use Path::Class;
 use base qw(Class::Accessor::Fast);
 __PACKAGE__->mk_accessors(qw(sizes));
-our $VERSION = '0.34';
+our $VERSION = '0.40';
 
 sub new {
     my $class = shift;

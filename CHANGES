@@ -1,6 +1,6 @@
 Revision history for Perl module Image::Imlib2::Thumbnail:
 
-0.40
+0.40 Mon Aug 24 22:12:07 BST 2009
   - have different quality ratio per size (defaults to 75), patch
     by Jos Boumans
   - preserve the image extension (so resized PNGs are PNGs) and 

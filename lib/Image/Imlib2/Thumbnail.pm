@@ -95,7 +95,7 @@ sub generate {
         next unless $type eq $original_type;
 
         # add quality from the size definition if provided
-        my $quality = $size->{'quality'} || 75;
+        my $quality = $size->{quality} || 75;
 
         my $scaled_image;
 
